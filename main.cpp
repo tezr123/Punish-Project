@@ -74,12 +74,14 @@ int main(){
 			cout<<"请问你要输入多少个惩罚：";
 			int cf;
 			cin>>cf;
-			if(cf){
-				vecPunishList.resize(10+cf);
-				cout<<"请输入你的惩罚:";	
-				for(int i=10;i<10+cf;i++){
-					cin>>vecPunishList[i].content;
-					vecPunishList[i].index=i+1;
+			if(cf>0){
+				cout<<"请输入你的惩罚:\n";	
+				for(int i=0;i<cf;i++){
+					cout<<"请输入惩罚"<<i+1<<":"; 
+		            Punish p;
+		            cin>>p.content;
+		            p.index = vecPunishList.size() + 1; // 设置新惩罚的索引
+		            vecPunishList.push_back(p);
 				}
 			}
 			Punished(10+cf,vecPunishList);
@@ -90,35 +92,39 @@ int main(){
 			int cf1;
 			cin>>cf1;
 			vector<Punish> vecPunishList2;
-			if(cf1){
+			if(cf1>0){
 				cout<<"请分别输入它们的编号：";
 				int cf2[cf1];
 				for(int i=0;i<cf1;i++){
 					cin>>cf2[i];
-					vecPunishList2.push_back(vecPunishList[cf2[i]]);
+					vecPunishList2.push_back(vecPunishList[cf2[i]-1]);
 				}
 			}
 			cout<<"请问你要输入多少个惩罚：";
 			int cf3;
 			cin>>cf3;
-			if(cf3){
-				vecPunishList.resize(cf1+cf3);
-				cout<<"请输入你的惩罚:";
-				for(int i=cf1;i<cf1+cf3;i++){
-					cin>>vecPunishList2[i].content;
-					vecPunishList2[i].index=i+1;
-				}
+			if(cf3>0){
+				cout<<"请输入你的惩罚:\n"; // 这里提示输入惩罚内容
+		        for(int i=0;i<cf3;i++){
+		        	cout<<"请输入惩罚"<<i+1<<":"; 
+		            Punish p;
+		            cin>>p.content;
+		            p.index = vecPunishList2.size() + 1; // 设置新惩罚的索引
+		            vecPunishList2.push_back(p);
+		        }
 			}
-			if(cf1&&cf3){
+			if(cf1>0&&cf3>0){
 				Punished(cf1+cf3,vecPunishList2);
-			}
+			}else{
+				cout<<"没有选择任何惩罚！"<<endl;
+			} 
 			break;
 		}	
 		case 4:{
 			cout<<"请问你要输入多少个惩罚：";
 			int cf4;
 			cin>>cf4;
-			if(cf4){
+			if(cf4>0){
 				vector<Punish> vecPunishList3(cf4);
 				cout<<"请输入你的惩罚:";
 				for(int i=0;i<cf4;i++){
